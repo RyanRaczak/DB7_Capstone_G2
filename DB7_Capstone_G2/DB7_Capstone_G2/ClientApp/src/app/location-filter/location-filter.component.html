@@ -1,0 +1,15 @@
+<div *ngIf="states && allCities" class=" form-row">
+    <div class="form-group col-sm-4">
+        <select id="StateFilter" class="form-control" (change)="StateSelected()">
+            <option selected>State</option>
+            <option *ngFor="let state of states; let i = index" value="{{state.stateAbbr}}">{{state.stateAbbr}}</option>
+        </select>
+    </div>
+
+    <div class="form-group  col-sm-6">
+        <select id="CityFilter" style="display: none;" class="form-control">
+            <option selected>City</option>
+            <option *ngFor="let city of filteredCities; let i = index" value="{{city}}">{{city}}</option>
+        </select>
+    </div>
+</div>

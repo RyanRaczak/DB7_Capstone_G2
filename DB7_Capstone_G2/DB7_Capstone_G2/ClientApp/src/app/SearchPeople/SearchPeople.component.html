@@ -1,0 +1,84 @@
+
+<div class="mx-auto" style="width: 200px;">
+  <form class="form-inline">
+    <div class="form-row d-flex justify-content-center">
+
+      <!--SELECTS WHICH SEARCH TYPE-->
+      <div class="form-group col-auto">
+            <select id="searchSelection" (change)="SearchTypeChange()" class="form-control">
+              <option value="byname" selected>Search Name</option>
+              <option value="location">City & State</option>
+              <option value="interest">interest</option>
+            </select> 
+      </div>
+
+      <!--SEARCH NAME-->
+      <div *ngIf="sName" class="form-group col-auto">
+        <input (input)="Search($event)" class="form-control">
+      </div>
+
+      <!--SEARCH LOCATION-->
+      <div *ngIf="sLoc && cities" id="Location">
+        <div class="form-group col-auto m-3">        
+          <select id="stateSelected" (change)="FilterCities()" class="form-control">
+            <option selected>State</option>
+            <option *ngFor="let state of states" value="{{state.stateAbbr}}">{{state.stateName}} ({{state.stateAbbr}})</option>
+          </select> 
+          <select id="selectedCity" style="display: none;" (change)="Search()" class="form-control">
+            <option selected>City</option>
+            <option *ngFor="let city of filteredCities" value="{{city}}">{{city}}</option>
+          </select>
+        </div>
+      </div>
+
+      <!--SEARCH INTEREST-->
+      <div *ngIf="sInt" class="form-group col-auto" id="Interest">
+        <p>Interest Search has not been implemented</p>
+        <select id="selectedInterest" class="form-control">
+          <option *ngFor="let interest of interests" value="{{interest.id}}">{{interest.interestName}}</option>
+        </select>
+      </div>
+      
+    </div>
+  </form>
+</div>
+
+<!--Default Users List-->
+<div class="container">  
+  <div *ngIf="users && closeDefault">
+    <div class="row">
+      <div class="col-4 justify-content-between align-self-start p-3" *ngFor="let user of users">
+        <div class="card">
+          <div class="card-body">
+            <div>
+                <img class="img-fluid pb-3" src="{{profilePic}}">
+                <p>{{user.firstName}} {{user.lastName}}</p><hr>
+                <p>{{user.city}}, {{user.state}}</p>
+                <button (click)="onSelect(user.userId)" type="button" class="btn btn-info">View Profile</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--SHOW FILTERED PEOPLE-->
+<div class="container">
+  <div *ngIf="filteredUsers">
+    <div class="row">
+      <div class="col-4 justify-content-between align-self-start p-3" *ngFor="let user of filteredUsers">
+        <div class="card">
+          <div class="card-body">
+            <div>
+              <img class="img-fluid" src="{{profilePic}}">
+              <p>{{user.firstName}} {{user.lastName}}</p><hr>
+              <p>{{user.city}}, {{user.state}}</p>
+              <button (click)="onSelect(user.userId)" type="button" class="btn btn-info">View Profile</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

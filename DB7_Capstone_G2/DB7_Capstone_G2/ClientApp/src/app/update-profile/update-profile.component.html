@@ -1,0 +1,31 @@
+<h3>Profile</h3>
+<p>Please fill in this form to create an account.</p>
+<div>
+    <form *ngIf="profile">
+        <div class="form-group">
+            <label for="FirstName">First Name</label>
+            <input type="text" class="form-control" value="{{profile.firstName}}" id="FirstName" />
+        </div>
+    
+        <div class="form-group">
+            <label for="LastName">Last Name</label>
+            <input type="text" class="form-control"  value="{{profile.lastName}}" id="LastName" /> 
+        </div>
+    
+        <div class="form-group">
+            <label for="Bio">Bio</label>
+            <input type="text" class="form-control"  value="{{profile.userBio}}" id="Bio" /> 
+        </div>
+    
+        <div class="form-group">
+            <label for="Email">Email</label>
+            <input type="text" class="form-control"  value="{{profile.email}}" id="Email" /> 
+        </div>
+    
+        <label for="locationFilter">Location</label>
+        <app-location-filter id="locationFilter"></app-location-filter>
+    
+        <button class="btn btn-primary" (click)="UpdateProfile()">Update</button>
+        
+    </form>
+</div>

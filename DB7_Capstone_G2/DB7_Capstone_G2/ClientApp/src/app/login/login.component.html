@@ -1,0 +1,22 @@
+<div class="container">
+    <div *ngIf="!loginService.getLoginStatus()">
+      <form action="action_page.php">
+        <div class="form-group">
+          <label for="Uname"><b>UserName</b></label>
+          <input type="text" id="Uname" name="userName" placeholder="Your username..">
+        </div>
+        <div class="form-group">
+          <label for="Pword"><b>Password</b></label>
+          <input type="password" id="Pword" name="password" placeholder="Your password..">
+          <small class="form-text text-muted">We'll never share your password with anyone else.</small>
+        </div>
+        <button class="btn btn-primary" (click)="loginUser()" type="button">Login</button>
+      </form>
+    </div>
+    <div *ngIf="loginService.getLoginStatus()">
+      <div *ngIf="loginService.userInfo">
+        <h4>Log out of {{loginService.userInfo.firstName}} {{loginService.userInfo.lastName}}?</h4><br>
+        <button class="btn btn-primary" (click)="logoutUser()">Logout</button>
+      </div>
+    </div>
+  </div>

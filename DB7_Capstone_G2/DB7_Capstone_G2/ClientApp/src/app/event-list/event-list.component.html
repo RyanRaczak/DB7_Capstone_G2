@@ -1,0 +1,37 @@
+
+<div class="container">
+    <label for="locationFilter">Location</label>
+    <app-location-filter id="locationFilter" (change)="SelectedCity()" ></app-location-filter>
+    <div class="row">
+        <button [routerLink]="['/create-event']">Create Event</button>
+    </div>
+</div>
+
+<div *ngIf="filteredEvents" class="container">
+    <div class="row align-items-center">
+        <div *ngFor="let event of filteredEvents; let i = index" id="Event{{i}}" class="events col-sm-12">
+            <div class="row" *ngIf="event && event.eventId">
+                <div class="event-image col-sm-4">
+                </div>
+                <div class="event-details col-sm-8" style="border: 1px solid lightgray;">
+                    <a [routerLink]="['/eventview', event.eventId]">
+                        <h5>{{event.eventName}}</h5>
+                    </a>
+                    <span>Description: </span>
+                    <p >{{event.eventDescription}}</p>
+
+                    <span><a [routerLink]="" (click)="ViewProfile(event.createdBy)"> Host Profile</a></span>
+                    <br>
+                    <span>Location: </span>
+                    <span>{{event.eventCity}}, {{event.eventState}}</span>
+                    <br>
+                    <span>Date: {{ event.eventDate | date: 'MM-dd-yyyy'  }}</span>
+                    <div *ngIf=" event.createdBy === loginService.userInfo.userId">
+                        <button type="button" (click) = "EditEvent(event.eventId)" >Edit Event</button>
+                        <button type="button" (click) = "DeleteEvent(event.eventId, i)">Delete Event</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

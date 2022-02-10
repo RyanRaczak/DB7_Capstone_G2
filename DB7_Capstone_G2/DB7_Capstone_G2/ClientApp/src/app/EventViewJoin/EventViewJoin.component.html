@@ -1,0 +1,32 @@
+<div class="container">
+  <!--TITLE/DESC/DATE/LOCATION/IMAGE-->
+  <div class="row">
+    <div class="col">
+      <img class="img-fluid pb-3" src="https://i.pinimg.com/736x/29/a7/50/29a7506ec3b478caaca8b080366c2748.jpg">
+    </div>
+    <div class="col align-self-center">
+      <div *ngIf="selectedEvent">
+        <h1>{{selectedEvent.eventName}}</h1>
+        <p>{{selectedEvent.eventDescription}}</p>
+        <h4>When:</h4>
+        <p>{{selectedEvent.eventDate | date:'MM-dd-yyyy'}}</p>
+        <h4>Where:</h4>
+        <p>{{selectedEvent.eventCity}}, {{selectedEvent.eventState}}</p>
+      </div>
+    </div>
+  </div>
+
+  <!--LIST OF ATTENDEES-->
+  <div class="row">
+    <div class="col">
+      <ul class="list-group list-group-flush">
+        <h4>Who will be there:</h4><hr>
+        <li class="list-group-item" *ngFor="let user of selectedEvent.attendees">
+          <a [routerLink]="['/profile/',user.userId]">{{user.firstName}} {{user.lastName}}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  
+</div>
+

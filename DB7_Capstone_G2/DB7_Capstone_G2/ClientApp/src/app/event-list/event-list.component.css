@@ -1,0 +1,16 @@
+.events{
+    /*border: 2px solid lightgray;*/
+    margin-top: 1.5px;
+    margin-bottom: 1.5px;
+}
+
+.event-image{
+    width: auto;
+    background-color: grey;
+    padding: 5px;
+}
+
+.event-details{
+    min-height: 100px;
+    background-color: lightgray;
+}

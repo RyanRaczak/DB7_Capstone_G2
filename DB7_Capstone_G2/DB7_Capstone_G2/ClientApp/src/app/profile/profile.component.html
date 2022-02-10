@@ -1,0 +1,39 @@
+<div *ngIf="currentUser">
+    
+    <div id="Display{{currentUser.userId}}">
+        <p>{{currentUser.firstName}}</p>
+        <p>{{currentUser.lastName}}</p>
+        <p>{{currentUser.userBio}}</p>
+        <p>{{currentUser.email}}</p>
+        <p>{{currentUser.city}}, {{currentUser.state}}</p>
+
+        <hr/>
+
+        <div>
+            <ul>
+                <li *ngFor="let event of currentUser.eventsAttending; let i = index">
+                    <a [routerLink]="['eventview', event.eventId]">
+                        {{event.eventName}}
+                    </a>
+                </li>
+            </ul>
+        </div>
+    
+        <div *ngIf="currentUser.userId && loginServ && loginServ.userInfo">
+            <div *ngIf="loginServ.userInfo.userId === currentUser.userId">
+                <button class="btn btn-danger" (click)="DeleteProfile(currentUser.id)">Delete</button>
+                <button class="btn btn-primary" (click)="EditProfile(currentUser.userId)">Update</button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="Edit{{currentUser.userId}}" style="display: none;">
+        <app-update-profile [id]=currentUser.id></app-update-profile>
+    </div>
+</div>
+
+
+
+
+
+

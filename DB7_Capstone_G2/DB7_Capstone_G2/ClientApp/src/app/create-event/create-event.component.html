@@ -1,0 +1,32 @@
+<div>
+  <h1 class="display-4">Create Event</h1>
+  
+  <form>
+      <div class="form-group">
+          <label for="eventName">Event Name</label>
+          <input type="text" class="form-control" id="eventName" placeholder="Event Name">
+      </div>
+  
+      <div class="form-group">
+          <label for="eventDescription">Event Description</label>
+          <input type="text" class="form-control" id="eventDescription" placeholder="Event Description">
+      </div>
+  
+      <div class="form-group">
+        <label for="eventDate">Event Date</label>
+        <input type="date" class="form-control" id="eventDate">
+      </div>
+  
+      <div style="width: 25%;" class="form-group">
+          <label for="eventCapacity">Event Capacity</label>
+          <input type="number" class="form-control" id="eventCapacity">
+      </div>
+  
+      <label for="locationFilter">Location</label>
+      <app-location-filter id="locationFilter"></app-location-filter>
+
+      <input *ngIf="loginService && loginService.isloggedin === true" type="hidden" id="createdBy" value="{{loginService.userInfo.userId}}"/>
+  
+      <button (click)="AddEvent()" type="button" class="btn btn-primary">Create Event</button>
+  </form>
+</div>
